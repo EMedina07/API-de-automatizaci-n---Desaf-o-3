@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Library API Test Suite" verbose="2" parallel="false">
+
+    <test name="Functional — Add Book">
+        <classes>
+            <class name="com.library.tests.AddBookTest"/>
+        </classes>
+    </test>
+
+    <test name="Functional — Get Book">
+        <classes>
+            <class name="com.library.tests.GetBookTest"/>
+        </classes>
+    </test>
+
+    <test name="Functional — Delete Book">
+        <classes>
+            <class name="com.library.tests.DeleteBookTest"/>
+        </classes>
+    </test>
+
+    <test name="Integration — Full CRUD Flow">
+        <classes>
+            <class name="com.library.tests.LibraryIntegrationTest"/>
+        </classes>
+    </test>
+
+</suite>

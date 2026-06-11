@@ -27,8 +27,6 @@ public class LibraryIntegrationTest extends BaseTest {
         if (bookId2 != null) ApiHelper.deleteBook(bookId2);
     }
 
-    // ─── i. Create both books ────────────────────────────────────────────────
-
     @Test(priority = 1)
     @Story("i. Create 2 books — validates a, b, c, d")
     @Severity(SeverityLevel.BLOCKER)
@@ -47,8 +45,6 @@ public class LibraryIntegrationTest extends BaseTest {
         bookId2 = resp2.jsonPath().getString("ID");
     }
 
-    // ─── ii. Get both books ──────────────────────────────────────────────────
-
     @Test(priority = 2, dependsOnMethods = "integration_CreateBothBooks")
     @Story("ii. Get both books — validates a, b, c")
     @Severity(SeverityLevel.CRITICAL)
@@ -57,8 +53,6 @@ public class LibraryIntegrationTest extends BaseTest {
         assertGetResponse(ApiHelper.getBook(bookId1));
         assertGetResponse(ApiHelper.getBook(bookId2));
     }
-
-    // ─── iii. Delete both books ──────────────────────────────────────────────
 
     @Test(priority = 3, dependsOnMethods = "integration_GetBothBooks")
     @Story("iii. Delete both books — validates a, b, c")
@@ -71,8 +65,6 @@ public class LibraryIntegrationTest extends BaseTest {
         assertDeleteResponse(ApiHelper.deleteBook(bookId2));
         bookId2 = null;
     }
-
-    // ─── iv. Verify books are gone ───────────────────────────────────────────
 
     @Test(priority = 4, dependsOnMethods = "integration_DeleteBothBooks")
     @Story("iv. Verify deleted books return 404 — validates d")
@@ -87,8 +79,6 @@ public class LibraryIntegrationTest extends BaseTest {
         ApiHelper.getBook(id2).then()
                 .statusCode(404);
     }
-
-    // ─── Assertion helpers ────────────────────────────────────────────────────
 
     private void assertAddResponse(Response resp, String isbn, String aisle) {
         assertThat(resp.statusCode()).isEqualTo(200);

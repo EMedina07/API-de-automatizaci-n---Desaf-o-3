@@ -23,15 +23,10 @@ public class BaseTest {
         warmUpApi();
     }
 
-    /**
-     * Fires a throwaway request so TLS handshake, DNS resolution and any
-     * server-side cold start are not charged to the first measured test.
-     */
     private void warmUpApi() {
         try {
             given().get("/GetBook.php?ID=warmup");
         } catch (Exception ignored) {
-            // Warm-up is best-effort; real failures surface in the tests.
         }
     }
 }
